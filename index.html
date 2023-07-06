@@ -8,36 +8,34 @@
     <title>Карточная игра</title>
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
+<style>
+@font-face {
+  font-family: 'MyFont'; /* Название твоего шрифта */
+  src: url(/assets/font/stratosskyengweb-regular.woff2) format('woff2'), /* Путь до твоего файла .woff2 */
+       url(/assets/font/stratosskyengweb-regular.woff) format('woff'); /* Путь до твоего файла .woff */
+  font-weight: normal; /* Насыщенность шрифта */
+  font-style: normal; /* Стиль шрифта */
+}
+</style>
 
 <body>
 <div class="content center">
     <div class="content__game">
-        <h1 class="content__game_h1">Выбери<br> сложность</h1>
-        <div class="content__box">
-            <!-- <div class="content__game_game1">
-                <a href="#"></a>
-                <div class="content__game_text">1</div>
+        <h1 class="content__game_h1">Выбери сложность</h1>
+            <div class="content__box">  
+                <div class="content__game_game1"> 
+                    <input type="radio" id="radio1" name="radios" value="1" checked>
+                    <label for="radio1">1</label>
+                    
+                    <input type="radio" id="radio2" name="radios" value="2">
+                    <label for="radio2">2</label>
+                    
+                    <input type="radio" id="radio3" name="radios" value="3">
+                    <label for="radio3">3</label>
+                </div> 
             </div>
-            <div class="content__game_game1">
-                <div class="content__game_text">2</div>
-            </div>
-            <div class="content__game_game1">
-                <div class="content__game_text">3</div>
-            </div> -->
-            <button class="content__game_game1">
-                1
-            </button>
-            <button class="content__game_game1">
-                2
-            </button>
-            <button class="content__game_game1">
-                3
-            </button>
-        </div>
         <button class="button__level button__level_text">Старт</button>
     </div>
-
-
 </div>
 </body>
 

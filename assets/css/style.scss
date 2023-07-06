@@ -5,8 +5,12 @@
     text-decoration: none;
   }
 
+  body {
+    font-family: 'MyFont', sans-serif;
+  }
+
   .content {
-    height: 1024px;
+    height: 100vh;
     background-color: #004980;
     display: flex;
     align-content: center;
@@ -21,7 +25,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        // position: relative;
 
         &_h1 {
             text-align: center;
@@ -30,50 +33,50 @@
             font-size: 40px;
             line-height: 48px;
             margin-top: 52px;
+            width: 208px;
+
         }
 
-        &_game1 {
-                // background-color: white;
-                // width: 98px;
-                // height: 98px;
-                // border-radius: 12px;
-                width: 98px;
-                height: 98px; 
-                box-sizing: border-box;
-                border: 1px solid #FFFFFF;
-                border-radius: 12px;
-                background-color: #FFFFFF;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-style: normal;
-                font-weight: 400;
-                font-size: 40px;
-                line-height: 48px;
-                color: #004980; 
-                text-decoration-line: none;
-                transition: 0.3s;
+        &_game1 label {
+          width: 98px;
+          height: 98px; 
+          box-sizing: border-box;
+          border: 1px solid #FFFFFF;
+          border-radius: 12px;
+          background-color: #FFFFFF;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 64px;
+          line-height: 72px;
+          color: #0080C1; 
+          text-decoration-line: none;
+          transition: 0.3s;
         }
 
-        &_text {
-            font-weight: 400;
-            font-size: 64px;
-            line-height: 72px;
-            color: #0080C1;
-            text-align: center;
-            // position: absolute;
-            // top: 50%;
-            // left: 50%;
-            // height: 30%;
-            // width: 50%;
-          }                   
+        &_game1 label:hover {
+          background-color: #d0ffb7;
+          border: 1px solid #1CA92E;
       }
 
-      &__box {
-        margin-top: 48px;
-        display: flex;
-        gap: 26px;
-        // justify-content: space-evenly;
+        &_game1 input[type="radio"]:checked+label {
+          background-color: #d0ffb7;
+          border: 1px solid #1CA92E;
+        }
+
+        &_game1 input[type="radio"] {
+          display: none;
+      }
+
+        &_game1 {
+          display: flex;
+          flex-direction: row;
+          margin-top: 48px;
+          display: flex;
+          gap: 26px;
+        }               
       }
   }
 
@@ -86,12 +89,10 @@
     border: 0;
 
     &_text {
+      font-family: 'MyFont';
         font-weight: 400;
         font-size: 24px;
         line-height: 32px;
         color: #FFFFFF;
     }
   }
-
-
-
