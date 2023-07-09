@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+  }
+
+  body {
+    font-family: 'MyFont', sans-serif;
+  }
+
+  .content {
+    height: 100vh;
+    background-color: #004980;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    &__game {
+        width: 480px;
+        height: 459px;
+        background-color: #C2F5FF;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &_h1 {
+            text-align: center;
+            color: #004980;
+            font-weight: 400;
+            font-size: 40px;
+            line-height: 48px;
+            margin-top: 52px;
+            width: 208px;
+
+        }
+
+        &_game1 label {
+          width: 98px;
+          height: 98px; 
+          box-sizing: border-box;
+          border: 1px solid #FFFFFF;
+          border-radius: 12px;
+          background-color: #FFFFFF;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 64px;
+          line-height: 72px;
+          color: #0080C1; 
+          text-decoration-line: none;
+          transition: 0.3s;
+        }
+
+        &_game1 label:hover {
+          background-color: #d0ffb7;
+          border: 1px solid #1CA92E;
+      }
+
+        &_game1 input[type="radio"]:checked+label {
+          background-color: #d0ffb7;
+          border: 1px solid #1CA92E;
+        }
+
+        &_game1 input[type="radio"] {
+          display: none;
+      }
+
+        &_game1 {
+          display: flex;
+          flex-direction: row;
+          margin-top: 48px;
+          display: flex;
+          gap: 26px;
+        }               
+      }
+  }
+
+  .button__level {
+    margin-top: 68px;
+    width: 246px;
+    height: 50px;
+    border-radius: 12px;
+    background-color: #7AC100;
+    border: 0;
+
+    &_text {
+      font-family: 'MyFont';
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 32px;
+        color: #FFFFFF;
+    }
+  }
