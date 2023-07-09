@@ -30,7 +30,7 @@ export function renderSelectionLevelGame() {
     };
 
 
-    const difficultyInputs = document.querySelectorAll('#difficulty input[name="difficulty"]');
+    const difficultyInputs = document.querySelectorAll('.content__game_game1 input[name="difficulty"]');
 
     const startButton = document.querySelector('#start-button');
 
