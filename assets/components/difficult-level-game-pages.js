@@ -58,18 +58,16 @@ export function renderSelectionLevelGame() {
     
     startButton.addEventListener('click', () => {
         startGame(gameData.difficulty);
-        // renderPageFirstLevelDifficulty()
     });
 
     function startGame(difficulty) {
-        //   renderPageFirstLevelDifficulty()
         //     // shuffle();// перемешиваем все карточки
         //     // let selectedCards = cards.slice(0, gameData.numCards);
         //     // selectedCards.forEach(card => {
         //     //   card.classList.remove('flipped');
         //     //   card.addEventListener('click', flipCard);};
         console.log(`Запуск игры с уровнем сложности "${difficulty}"`);
-        renderPageFirstLevelDifficulty();
+        renderPageFirstLevelDifficulty(difficulty);
 
     };
 }
