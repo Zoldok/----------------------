@@ -1,4 +1,4 @@
-// import { renderPageFirstLevelDifficulty } from "./page-first-level-difficulty.js";
+import { renderPageFirstLevelDifficulty } from "./page-game-difficult.js";
 export function renderSelectionLevelGame() {
 
 
@@ -22,7 +22,7 @@ export function renderSelectionLevelGame() {
     </div>
     </div>
     `
-app.innerHTML = appHtml;
+    app.innerHTML = appHtml;
 
     const gameData = {
         difficulty: 'easy', // по умолчанию выбран легкий уровень сложности
@@ -35,44 +35,41 @@ app.innerHTML = appHtml;
     const startButton = document.querySelector('#start-button');
 
 
-    difficultyInputs.forEach(input => {
-        input.addEventListener('change', () => {
-            gameData.difficulty = input.value;
-            updateNumCards();
-            startGame();
-        });
-    });
-
     function updateNumCards() {
         switch (gameData.difficulty) {
             case 'easy':
                 gameData.numCards = 6;
                 break;
             case 'medium':
-                gameData.numCards = 12;
+                gameData.numCards = 8;
                 break;
             case 'hard':
-                gameData.numCards = 18;
+                gameData.numCards = 10;
                 break;
         }
-    }
+    };
 
+    difficultyInputs.forEach(input => {
+        input.addEventListener('change', () => {
+            gameData.difficulty = input.value;
+            updateNumCards();
+        });
+    });
+    
     startButton.addEventListener('click', () => {
         startGame(gameData.difficulty);
-   
-  
+        // renderPageFirstLevelDifficulty()
     });
 
-
-    function startGame() {
-    //   renderPageFirstLevelDifficulty()
-    //     // shuffle();// перемешиваем все карточки
-    //     // let selectedCards = cards.slice(0, gameData.numCards);
-    //     // selectedCards.forEach(card => {
-    //     //   card.classList.remove('flipped');
-    //     //   card.addEventListener('click', flipCard);};
+    function startGame(difficulty) {
+        //   renderPageFirstLevelDifficulty()
+        //     // shuffle();// перемешиваем все карточки
+        //     // let selectedCards = cards.slice(0, gameData.numCards);
+        //     // selectedCards.forEach(card => {
+        //     //   card.classList.remove('flipped');
+        //     //   card.addEventListener('click', flipCard);};
         console.log(`Запуск игры с уровнем сложности "${difficulty}"`);
-        renderPageFirstLevelDifficulty(difficulty);
+        renderPageFirstLevelDifficulty();
 
-    }
+    };
 }

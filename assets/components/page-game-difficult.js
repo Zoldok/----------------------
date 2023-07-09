@@ -1,4 +1,4 @@
-export function renderPageFirstLevelDifficulty ({difficulty}) {
+export function renderPageFirstLevelDifficulty () {
     const appHtml = `
     <div>
         Логика игры
