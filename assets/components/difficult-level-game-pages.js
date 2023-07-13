@@ -41,10 +41,10 @@ export function renderSelectionLevelGame() {
                 gameData.numCards = 6;
                 break;
             case 'medium':
-                gameData.numCards = 8;
+                gameData.numCards = 12;
                 break;
             case 'hard':
-                gameData.numCards = 10;
+                gameData.numCards = 18;
                 break;
         }
     };
