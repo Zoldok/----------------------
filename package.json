@@ -6,14 +6,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "http-server -p 3001",
-    "format": "prettier --write ./assets/"
+    "format": "prettier --write ./assets/",
+    "lint:js": "eslint ./components/**/*.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "http-server": "^14.1.1",
-    "lodash": "^4.17.21",
-    "lint:js": ".components/**/*.js"
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "axios": "^1.4.0",
