@@ -20,6 +20,7 @@ export function renderSelectionLevelGame() {
     </div>
     </div>
     `
+    let app
     app.innerHTML = appHtml
 
     const gameData = {
