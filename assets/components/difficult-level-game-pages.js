@@ -20,7 +20,7 @@ export function renderSelectionLevelGame() {
     </div>
     </div>
     `
-    let app
+    /* eslint-disable no-undef */
     app.innerHTML = appHtml
 
     const gameData = {
