@@ -1,5 +1,6 @@
 import { renderPageFirstLevelDifficulty } from './page-game-difficult.js'
 export function renderSelectionLevelGame() {
+    const app = document.querySelector('#app')
     const appHtml = `
     <div class="content center">
     <div class="content__game">
@@ -20,7 +21,6 @@ export function renderSelectionLevelGame() {
     </div>
     </div>
     `
-    /* eslint-disable no-undef */
 
     app.innerHTML = appHtml
 
