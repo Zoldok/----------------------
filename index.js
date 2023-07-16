@@ -1,6 +1,3 @@
-import { renderSelectionLevelGame } from "./assets/components/difficult-level-game-pages.js";
+import { renderSelectionLevelGame } from './assets/components/difficult-level-game-pages.js'
 
-renderSelectionLevelGame();
-
-
-
+renderSelectionLevelGame()

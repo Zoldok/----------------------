@@ -1,5 +1,3 @@
-//код останавливается после угадывания 2х карт
-
 import cards from './cards.js'
 
 export function renderPageFirstLevelDifficulty(difficulty) {
@@ -26,7 +24,6 @@ export function renderPageFirstLevelDifficulty(difficulty) {
     app.innerHTML = appHtml
 
     const cardElements = document.querySelectorAll('.card')
-
     cardElements.forEach((card) => {
         card.addEventListener('click', flipCard)
     })
@@ -78,16 +75,17 @@ export function renderPageFirstLevelDifficulty(difficulty) {
         for (let i = 0; i < shuffledCards.length; i++) {
             const card = shuffledCards[i]
             const cardHtml = `
-                <div class="card" data-card-name="${card.name}">
-                    <div class="card__front">
-                        <img src="${card.front}" alt="">
-                    </div>
-                    <div class="card__back">
-                        <img src="${card.back}" alt="">
-                    </div>
-                </div>
-            `
+    <div class="card">
+      <div class="card__front">
+        <img src="${card.front}" alt="">
+      </div>
+      <div class="card__back">
+        <img src="${card.back}" alt="">
+      </div>
+    </div>
+  `
             console.log(`Rendered card ${i}: ${card.front}`)
+
             cardsHtml += cardHtml
         }
         return cardsHtml
@@ -98,9 +96,13 @@ function shuffle(array) {
     let currentIndex = array.length,
         randomIndex
 
+    // While there remain elements to shuffle...
     while (currentIndex !== 0) {
+        // Pick a remaining element...
         randomIndex = Math.floor(Math.random() * currentIndex)
         currentIndex--
+
+        // And swap it with the current element.
         ;[array[currentIndex], array[randomIndex]] = [
             array[randomIndex],
             array[currentIndex],
@@ -137,34 +139,7 @@ function getMemoryTime(difficulty) {
 }
 
 function flipCard(event) {
-    const currentCard = event.currentTarget
-
-    // Если карточка уже перевернута лицевой стороной вверх или уже перевернуто две карточки, ничего не делаем
-    if (
-        currentCard.classList.contains('flipped') ||
-        document.querySelectorAll('.flipped').length === 2
-    ) {
-        return
-    }
-
-    currentCard.classList.toggle('flipped')
-
-    const flippedCards = document.querySelectorAll('.flipped')
-
-    if (flippedCards.length === 2) {
-        const flippedCard1 = flippedCards[0]
-        const flippedCard2 = flippedCards[1]
-
-        if (flippedCard1.dataset.cardName === flippedCard2.dataset.cardName) {
-            // Если карточки совпали, выводим сообщение о победе
-            alert('Вы победили!')
-        } else {
-            // Если карточки не совпали, переворачиваем их рубашкой вверх через некоторое время
-            setTimeout(() => {
-                flippedCards.forEach((card) => {
-                    card.classList.toggle('flipped', false)
-                })
-            }, 1000)
-        }
-    }
+    event.currentTarget.classList.toggle('flipped')
 }
+
+// renderPageFirstLevelDifficulty('easy');
