@@ -8,10 +8,15 @@ const isProduction =
     process.env.NODE_ENV === 'production' ? 'production' : 'development'
 
 module.exports = {
-    entry: './index.js',
+    entry: './index.ts',
     mode: isProduction ? 'production' : 'development',
     module: {
         rules: [
+            {
+                test: /\.ts$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
             {
                 test: /\.css$/,
                 use: [MiniCssExtractPlugin.loader, 'css-loader'],
@@ -31,6 +36,9 @@ module.exports = {
         filename: 'bundle.js',
         clean: true,
     },
+    resolve: {
+        extensions: ['.ts', '.js'],
+    },
     plugins: [
         new CopyPlugin({
             patterns: [{ from: 'static', to: 'static' }],
@@ -41,10 +49,7 @@ module.exports = {
         new MiniCssExtractPlugin(),
     ],
     optimization: {
-        minimizer: [
-          '...',
-          new CssMinimizerPlugin(),
-        ],
-      },
+        minimizer: ['...', new CssMinimizerPlugin()],
+    },
     devtool: isProduction ? 'hidden-source-map' : 'source-map',
 }

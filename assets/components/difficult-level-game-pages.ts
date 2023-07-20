@@ -1,7 +1,7 @@
-import { renderPageFirstLevelDifficulty } from './page-game-difficult.js'
+import { renderPageFirstLevelDifficulty } from './page-game-difficult'
 
 export function renderSelectionLevelGame() {
-    const app = document.querySelector('#app')
+    const app = document.querySelector('#app') as HTMLInputElement
     const appHtml = `
     <div class="content center">
     <div class="content__game">
@@ -18,7 +18,7 @@ export function renderSelectionLevelGame() {
                     <label for="radio3">3</label>
                 </div> 
             </div>
-        <button id="start-button" class="button__level button__level_text ">Старт</button>
+        <button id="start-button" class="button button__start">Старт</button>
     </div>
     </div>
     `
@@ -34,7 +34,9 @@ export function renderSelectionLevelGame() {
         '.content__game_game1 input[name="difficulty"]',
     )
 
-    const startButton = document.querySelector('#start-button')
+    const startButton = document.querySelector(
+        '#start-button',
+    ) as HTMLInputElement
 
     function updateNumCards() {
         switch (gameData.difficulty) {
@@ -52,7 +54,7 @@ export function renderSelectionLevelGame() {
 
     difficultyInputs.forEach((input) => {
         input.addEventListener('change', () => {
-            gameData.difficulty = input.value
+            gameData.difficulty = (input as HTMLInputElement).value
             updateNumCards()
         })
     })
@@ -61,12 +63,7 @@ export function renderSelectionLevelGame() {
         startGame(gameData.difficulty)
     })
 
-    function startGame(difficulty) {
-        //     // shuffle();// перемешиваем все карточки
-        //     // let selectedCards = cards.slice(0, gameData.numCards);
-        //     // selectedCards.forEach(card => {
-        //     //   card.classList.remove('flipped');
-        //     //   card.addEventListener('click', flipCard);};
+    function startGame(difficulty: any) {
         console.log(`Запуск игры с уровнем сложности "${difficulty}"`)
         renderPageFirstLevelDifficulty(difficulty)
     }

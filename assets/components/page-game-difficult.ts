@@ -1,12 +1,11 @@
-//код останавливается после угадывания 2х карт
+import cards from './cards'
+import { renderSelectionLevelGame } from './difficult-level-game-pages'
 
-import cards from './cards.js'
-
-export function renderPageFirstLevelDifficulty(difficulty) {
-    let memoryTimeoutId // добавляем переменную для идентификатора таймера
-
+export function renderPageFirstLevelDifficulty(difficulty: any) {
+    let memoryTimeoutId: any // добавляем переменную для идентификатора таймера
+    let formattedTime: any
     const shuffledCards = shuffle([...cards, ...cards]) // удваиваем массив, чтобы получить пары карточек
-    const app = document.querySelector('#app')
+    const app = document.querySelector('#app') as HTMLInputElement
     const appHtml = `
     <div class="contentGame center">
       <div class="content__game_game">
@@ -15,7 +14,7 @@ export function renderPageFirstLevelDifficulty(difficulty) {
           <span class="timer__value">00:00</span>
         </div>
         </div>
-          <button id="restart-button" class="button__level2 button__level_text ">Начать заново</button>
+          <button id="restart-button" class="button button__restart">Начать заново</button>
         </div>
         <div class="content__box">
           <div class="cards">
@@ -27,11 +26,16 @@ export function renderPageFirstLevelDifficulty(difficulty) {
 
     const cardElements = document.querySelectorAll('.card')
 
+    // cardElements.forEach((card) => {
+    //     card.addEventListener('click', flipCard)
+    // })
     cardElements.forEach((card) => {
-        card.addEventListener('click', flipCard)
+        card.addEventListener('click', (event) =>
+            flipCard(event, gameResult, timerInterval, formattedTime),
+        )
     })
 
-    const memoryTime = getMemoryTime(difficulty)
+    const memoryTime = 5000
 
     // Переворачиваем карточки рубашкой вверх
     cardElements.forEach((card) => {
@@ -47,7 +51,9 @@ export function renderPageFirstLevelDifficulty(difficulty) {
 
     const startTime = new Date().getTime()
 
-    const timerValue = document.querySelector('.timer__value')
+    const timerValue = document.querySelector(
+        '.timer__value',
+    ) as HTMLInputElement
     const timerInterval = setInterval(() => {
         const currentTime = new Date().getTime()
         const elapsedTime = currentTime - startTime
@@ -59,7 +65,9 @@ export function renderPageFirstLevelDifficulty(difficulty) {
         timerValue.textContent = formattedTime
     }, 1000)
 
-    const restartButton = document.querySelector('#restart-button')
+    const restartButton = document.querySelector(
+        '#restart-button',
+    ) as HTMLInputElement
     restartButton.addEventListener('click', () => {
         clearInterval(timerInterval)
         clearTimeout(memoryTimeoutId)
@@ -69,7 +77,7 @@ export function renderPageFirstLevelDifficulty(difficulty) {
         renderPageFirstLevelDifficulty(difficulty)
     })
 
-    function renderCards(difficulty, cards) {
+    function renderCards(difficulty: any, cards: any) {
         const numCards = getNumCards(difficulty) * 2
         const selectedCards = cards.slice(0, Math.floor(numCards / 2))
         const duplicatedCards = [...selectedCards, ...selectedCards]
@@ -94,7 +102,7 @@ export function renderPageFirstLevelDifficulty(difficulty) {
     }
 }
 
-function shuffle(array) {
+function shuffle(array: any) {
     let currentIndex = array.length,
         randomIndex
 
@@ -110,7 +118,7 @@ function shuffle(array) {
     return array
 }
 
-function getNumCards(difficulty) {
+function getNumCards(difficulty: any) {
     switch (difficulty) {
         case 'easy':
             return 6
@@ -123,20 +131,9 @@ function getNumCards(difficulty) {
     }
 }
 
-function getMemoryTime(difficulty) {
-    switch (difficulty) {
-        case 'easy':
-            return 3000
-        case 'medium':
-            return 5000
-        case 'hard':
-            return 8000
-        default:
-            return 3000
-    }
-}
+let gameResult: any
 
-function flipCard(event) {
+function flipCard(event: any, timerInterval: any, formattedTime: any, gameResult: any, ) {
     const currentCard = event.currentTarget
 
     // Если карточка уже перевернута лицевой стороной вверх или уже перевернуто две карточки, ничего не делаем
@@ -155,16 +152,75 @@ function flipCard(event) {
         const flippedCard1 = flippedCards[0]
         const flippedCard2 = flippedCards[1]
 
-        if (flippedCard1.dataset.cardName === flippedCard2.dataset.cardName) {
+        if (
+            (flippedCard1 as HTMLElement)?.dataset.cardName ===
+            (flippedCard2 as HTMLElement)?.dataset.cardName
+        ) {
             // Если карточки совпали, выводим сообщение о победе
-            alert('Вы победили!')
+            // alert('Вы победили!')
+            gameResult = true
+            let formattedTime =
+                document.querySelector('.timer__value')?.textContent
+            alert(`Ваше время: ${formattedTime}`)
+            console.log(`${formattedTime}`)
+            clearInterval(timerInterval)
+            renderWinPage(gameResult, formattedTime)
         } else {
             // Если карточки не совпали, переворачиваем их рубашкой вверх через некоторое время
+            gameResult = false
+            let formattedTime =
+                document.querySelector('.timer__value')?.textContent
+            alert(`Ваше время: ${formattedTime}`)
+            console.log(`${formattedTime}`)
+            clearInterval(timerInterval)
+            renderWinPage(gameResult, formattedTime)
             setTimeout(() => {
                 flippedCards.forEach((card) => {
                     card.classList.toggle('flipped', false)
                 })
             }, 1000)
         }
+    }
+}
+
+function renderWinPage(gameResult: any, formattedTime: any) {
+    const app = document.querySelector('#app') as HTMLInputElement
+    const winPageHtml = `
+    <div class="fin__page">
+        <div class="window__fin_game">
+            <div class="window__fin_game2">
+                ${
+                    gameResult
+                        ? '<span class="window__fin_imgwin"></span>'
+                        : '<span class="window__fin_imgconq"></span>'
+                }
+                <div class="window__fin_"> 
+                    <p class="window__fin_text">${
+                        gameResult ? 'Вы выиграли!' : 'Вы проиграли!'
+                    }</p>
+                </div> 
+                <div class="window__fin_tex"> 
+                    <p class="window__fin_text2">Затраченное время</p>
+                    <div>
+                    <p class="window__fin_time">${formattedTime}</p>  
+                </div>          
+                    <button id="restart-button2" class="button button__again ">Играть снова</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  `
+    app.innerHTML = winPageHtml
+
+
+    const reStartGame2 = document.querySelector('#restart-button2') as HTMLInputElement
+
+    reStartGame2.addEventListener('click', () => {
+        reStartGameButton2()
+    })
+
+    function reStartGameButton2() {
+        console.log(`Игра перезапущена`)
+        renderSelectionLevelGame()
     }
 }
