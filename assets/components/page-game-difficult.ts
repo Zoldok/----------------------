@@ -1,9 +1,9 @@
 import cards from './cards'
 import { renderSelectionLevelGame } from './difficult-level-game-pages'
 
-export function renderPageFirstLevelDifficulty(difficulty: any) {
-    let memoryTimeoutId: any // добавляем переменную для идентификатора таймера
-    let formattedTime: any
+export function renderPageFirstLevelDifficulty(difficulty: string) {
+    let memoryTimeoutId: ReturnType<typeof setTimeout> // добавляем переменную для идентификатора таймера
+    let formattedTime: string
     const shuffledCards = shuffle([...cards, ...cards]) // удваиваем массив, чтобы получить пары карточек
     const app = document.querySelector('#app') as HTMLInputElement
     const appHtml = `
@@ -77,7 +77,7 @@ export function renderPageFirstLevelDifficulty(difficulty: any) {
         renderPageFirstLevelDifficulty(difficulty)
     })
 
-    function renderCards(difficulty: any, cards: any) {
+    function renderCards(difficulty: string, cards: Array<string>) {
         const numCards = getNumCards(difficulty) * 2
         const selectedCards = cards.slice(0, Math.floor(numCards / 2))
         const duplicatedCards = [...selectedCards, ...selectedCards]
@@ -102,7 +102,7 @@ export function renderPageFirstLevelDifficulty(difficulty: any) {
     }
 }
 
-function shuffle(array: any) {
+function shuffle(array: Array<any>) {
     let currentIndex = array.length,
         randomIndex
 
@@ -118,7 +118,7 @@ function shuffle(array: any) {
     return array
 }
 
-function getNumCards(difficulty: any) {
+function getNumCards(difficulty: string) {
     switch (difficulty) {
         case 'easy':
             return 6
@@ -131,7 +131,7 @@ function getNumCards(difficulty: any) {
     }
 }
 
-let gameResult: any
+let gameResult: boolean
 
 function flipCard(
     event: any,
