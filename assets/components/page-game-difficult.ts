@@ -133,7 +133,12 @@ function getNumCards(difficulty: any) {
 
 let gameResult: any
 
-function flipCard(event: any, timerInterval: any, formattedTime: any, gameResult: any, ) {
+function flipCard(
+    event: any,
+    timerInterval: any,
+    formattedTime: any,
+    gameResult: any,
+) {
     const currentCard = event.currentTarget
 
     // Если карточка уже перевернута лицевой стороной вверх или уже перевернуто две карточки, ничего не делаем
@@ -161,8 +166,8 @@ function flipCard(event: any, timerInterval: any, formattedTime: any, gameResult
             gameResult = true
             let formattedTime =
                 document.querySelector('.timer__value')?.textContent
-            alert(`Ваше время: ${formattedTime}`)
-            console.log(`${formattedTime}`)
+            // alert(`Ваше время: ${formattedTime}`)
+            // console.log(`${formattedTime}`)
             clearInterval(timerInterval)
             renderWinPage(gameResult, formattedTime)
         } else {
@@ -170,8 +175,8 @@ function flipCard(event: any, timerInterval: any, formattedTime: any, gameResult
             gameResult = false
             let formattedTime =
                 document.querySelector('.timer__value')?.textContent
-            alert(`Ваше время: ${formattedTime}`)
-            console.log(`${formattedTime}`)
+            // alert(`Ваше время: ${formattedTime}`)
+            // console.log(`${formattedTime}`)
             clearInterval(timerInterval)
             renderWinPage(gameResult, formattedTime)
             setTimeout(() => {
@@ -212,8 +217,9 @@ function renderWinPage(gameResult: any, formattedTime: any) {
   `
     app.innerHTML = winPageHtml
 
-
-    const reStartGame2 = document.querySelector('#restart-button2') as HTMLInputElement
+    const reStartGame2 = document.querySelector(
+        '#restart-button2',
+    ) as HTMLInputElement
 
     reStartGame2.addEventListener('click', () => {
         reStartGameButton2()
