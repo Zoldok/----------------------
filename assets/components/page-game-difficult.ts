@@ -2,8 +2,8 @@ import cards from './cards'
 import { renderSelectionLevelGame } from './difficult-level-game-pages'
 
 export function renderPageFirstLevelDifficulty(difficulty: string) {
-    let memoryTimeoutId: ReturnType<typeof setTimeout> // добавляем переменную для идентификатора таймера
-    let formattedTime: boolean
+    // let memoryTimeoutId: ReturnType<typeof setTimeout> // добавляем переменную для идентификатора таймера
+    let formattedTime: string
     const shuffledCards = shuffle([...cards, ...cards]) // удваиваем массив, чтобы получить пары карточек
     const app = document.querySelector('#app') as HTMLInputElement
     const appHtml = `
@@ -31,7 +31,7 @@ export function renderPageFirstLevelDifficulty(difficulty: string) {
     // })
     cardElements.forEach((card) => {
         card.addEventListener('click', (event) =>
-            flipCard(event, gameResult, timerInterval, formattedTime),
+            flipCard(event, timerInterval, formattedTime),
         )
     })
 
@@ -43,7 +43,7 @@ export function renderPageFirstLevelDifficulty(difficulty: string) {
     })
 
     // Убираем класс flipped через заданный промежуток времени
-    memoryTimeoutId = setTimeout(() => {
+   let memoryTimeoutId = setTimeout(() => {
         cardElements.forEach((card) => {
             card.classList.remove('flipped')
         })
@@ -134,13 +134,11 @@ function getNumCards(difficulty: string) {
 let currentCard: any = null
 let previousCard: any = null
 let isFlippingCards: boolean = false
-let gameResult: boolean
 
 function flipCard(
     event: any,
     timerInterval: any,
-    formattedTime: any,
-    gameResult: boolean,
+    formattedTime: string,
 ) {
     if (isFlippingCards) {
         // Игнорируем клики, если уже переворачиваем карты
@@ -172,22 +170,22 @@ function flipCard(
                 .call(allCards)
                 .every((card) => card.isMatched)
             if (allMatched) {
-                gameResult = true
+                // gameResult = true
                 let formattedTime =
                     document.querySelector('.timer__value')?.textContent
                 clearInterval(timerInterval)
-                renderWinPage(gameResult, formattedTime)
+                renderWinPage(formattedTime, true)
             }
 
             currentCard = null
             previousCard = null
             isFlippingCards = false
         } else {
-            gameResult = false
+            // gameResult = false
             let formattedTime =
                 document.querySelector('.timer__value')?.textContent
             clearInterval(timerInterval)
-            renderWinPage(gameResult, formattedTime)
+            renderWinPage(formattedTime, false)
             setTimeout(() => {
                 clearInterval(timerInterval)
                 currentCard.classList.remove('flipped')
@@ -200,7 +198,7 @@ function flipCard(
     }
 }
 
-function renderWinPage(gameResult: boolean, formattedTime: any) {
+function renderWinPage(formattedTime: any, gameResult: boolean) {
     const app = document.querySelector('#app') as HTMLInputElement
     const winPageHtml = `
     <div class="fin__page">
