@@ -2,8 +2,7 @@ import cards from './cards'
 import { renderSelectionLevelGame } from './difficult-level-game-pages'
 
 export function renderPageFirstLevelDifficulty(difficulty: string) {
-    // let memoryTimeoutId: ReturnType<typeof setTimeout> // добавляем переменную для идентификатора таймера
-    let formattedTime: string
+    let formattedTime: ReturnType<typeof setTimeout>
     const shuffledCards = shuffle([...cards, ...cards]) // удваиваем массив, чтобы получить пары карточек
     const app = document.querySelector('#app') as HTMLInputElement
     const appHtml = `
@@ -133,17 +132,17 @@ function getNumCards(difficulty: string) {
 
 let currentCard: any = null
 let previousCard: any = null
-let isFlippingCards: boolean = false
+// let isFlippingCards: boolean = false
 
 function flipCard(
     event: any,
-    timerInterval: any,
-    formattedTime: string,
+    timerInterval: ReturnType<typeof setTimeout>,
+    formattedTime: ReturnType<typeof setTimeout>,
 ) {
-    if (isFlippingCards) {
-        // Игнорируем клики, если уже переворачиваем карты
-        return
-    }
+    // if (isFlippingCards) {
+    //     // Игнорируем клики, если уже переворачиваем карты
+    //     return
+    // }
 
     const card = event.currentTarget
 
@@ -156,7 +155,7 @@ function flipCard(
     } else if (previousCard === null && currentCard !== card) {
         previousCard = card
         card.classList.toggle('flipped')
-        isFlippingCards = true
+        // isFlippingCards = true
         const currentCardFront =
             currentCard.querySelector('.card__front img').src
         const previousCardFront =
@@ -179,7 +178,7 @@ function flipCard(
 
             currentCard = null
             previousCard = null
-            isFlippingCards = false
+            // isFlippingCards = false
         } else {
             // gameResult = false
             let formattedTime =
@@ -192,7 +191,7 @@ function flipCard(
                 previousCard.classList.remove('flipped')
                 currentCard = null
                 previousCard = null
-                isFlippingCards = false
+                // isFlippingCards = false
             }, 1000)
         }
     }
