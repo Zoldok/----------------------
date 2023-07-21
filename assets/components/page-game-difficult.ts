@@ -130,12 +130,14 @@ function getNumCards(difficulty: string) {
     }
 }
 
-let currentCard: any = null
-let previousCard: any = null
+// let currentCard: any = null
+// let previousCard: any = null
+let currentCard:HTMLInputElement |any = null
+let previousCard: HTMLInputElement |any = null
 // let isFlippingCards: boolean = false
 
 function flipCard(
-    event: any,
+    event: Event,
     timerInterval: ReturnType<typeof setTimeout>,
     formattedTime: ReturnType<typeof setTimeout>,
 ) {
@@ -144,7 +146,7 @@ function flipCard(
     //     return
     // }
 
-    const card = event.currentTarget
+    const card = event.currentTarget as HTMLInputElement
 
     if (card.classList.contains('flipped')) {
         return
@@ -197,7 +199,7 @@ function flipCard(
     }
 }
 
-function renderWinPage(formattedTime: any, gameResult: boolean) {
+function renderWinPage(formattedTime: number | any, gameResult: boolean) {
     const app = document.querySelector('#app') as HTMLInputElement
     const winPageHtml = `
     <div class="fin__page">
