@@ -3,7 +3,7 @@ import { renderSelectionLevelGame } from './difficult-level-game-pages'
 
 export function renderPageFirstLevelDifficulty(difficulty: string) {
     let memoryTimeoutId: ReturnType<typeof setTimeout> // добавляем переменную для идентификатора таймера
-    let formattedTime: string
+    let formattedTime: boolean
     const shuffledCards = shuffle([...cards, ...cards]) // удваиваем массив, чтобы получить пары карточек
     const app = document.querySelector('#app') as HTMLInputElement
     const appHtml = `
@@ -131,64 +131,76 @@ function getNumCards(difficulty: string) {
     }
 }
 
+let currentCard: any = null
+let previousCard: any = null
+let isFlippingCards: boolean = false
 let gameResult: boolean
 
 function flipCard(
     event: any,
     timerInterval: any,
     formattedTime: any,
-    gameResult: any,
+    gameResult: boolean,
 ) {
-    const currentCard = event.currentTarget
-
-    // Если карточка уже перевернута лицевой стороной вверх или уже перевернуто две карточки, ничего не делаем
-    if (
-        currentCard.classList.contains('flipped') ||
-        document.querySelectorAll('.flipped').length === 2
-    ) {
+    if (isFlippingCards) {
+        // Игнорируем клики, если уже переворачиваем карты
         return
     }
 
-    currentCard.classList.toggle('flipped')
+    const card = event.currentTarget
 
-    const flippedCards = document.querySelectorAll('.flipped')
+    if (card.classList.contains('flipped')) {
+        return
+    }
+    if (currentCard === null) {
+        currentCard = card
+        card.classList.toggle('flipped')
+    } else if (previousCard === null && currentCard !== card) {
+        previousCard = card
+        card.classList.toggle('flipped')
+        isFlippingCards = true
+        const currentCardFront =
+            currentCard.querySelector('.card__front img').src
+        const previousCardFront =
+            previousCard.querySelector('.card__front img').src
+        if (currentCardFront === previousCardFront) {
+            currentCard.isMatched = true
+            previousCard.isMatched = true
 
-    if (flippedCards.length === 2) {
-        const flippedCard1 = flippedCards[0]
-        const flippedCard2 = flippedCards[1]
+            const allCards = document.querySelectorAll('.card')
+            const allMatched = Array.prototype.slice
+                .call(allCards)
+                .every((card) => card.isMatched)
+            if (allMatched) {
+                gameResult = true
+                let formattedTime =
+                    document.querySelector('.timer__value')?.textContent
+                clearInterval(timerInterval)
+                renderWinPage(gameResult, formattedTime)
+            }
 
-        if (
-            (flippedCard1 as HTMLElement)?.dataset.cardName ===
-            (flippedCard2 as HTMLElement)?.dataset.cardName
-        ) {
-            // Если карточки совпали, выводим сообщение о победе
-            // alert('Вы победили!')
-            gameResult = true
-            let formattedTime =
-                document.querySelector('.timer__value')?.textContent
-            // alert(`Ваше время: ${formattedTime}`)
-            // console.log(`${formattedTime}`)
-            clearInterval(timerInterval)
-            renderWinPage(gameResult, formattedTime)
+            currentCard = null
+            previousCard = null
+            isFlippingCards = false
         } else {
-            // Если карточки не совпали, переворачиваем их рубашкой вверх через некоторое время
             gameResult = false
             let formattedTime =
                 document.querySelector('.timer__value')?.textContent
-            // alert(`Ваше время: ${formattedTime}`)
-            // console.log(`${formattedTime}`)
             clearInterval(timerInterval)
             renderWinPage(gameResult, formattedTime)
             setTimeout(() => {
-                flippedCards.forEach((card) => {
-                    card.classList.toggle('flipped', false)
-                })
+                clearInterval(timerInterval)
+                currentCard.classList.remove('flipped')
+                previousCard.classList.remove('flipped')
+                currentCard = null
+                previousCard = null
+                isFlippingCards = false
             }, 1000)
         }
     }
 }
 
-function renderWinPage(gameResult: any, formattedTime: any) {
+function renderWinPage(gameResult: boolean, formattedTime: any) {
     const app = document.querySelector('#app') as HTMLInputElement
     const winPageHtml = `
     <div class="fin__page">
