@@ -1,10 +1,12 @@
 import cards from './cards'
 import { renderSelectionLevelGame } from './difficult-level-game-pages'
 
-
 export let formattedTime: string
 
-export function renderPageFirstLevelDifficulty(difficulty: string, formattedTime: string) {
+export function renderPageFirstLevelDifficulty(
+    difficulty: string,
+    formattedTime: string,
+) {
     // let memoryTimeoutId: ReturnType<typeof setTimeout> // добавляем переменную для идентификатора таймера
     const shuffledCards = shuffle([...cards, ...cards]) // удваиваем массив, чтобы получить пары карточек
     const app = document.querySelector('#app') as HTMLInputElement
@@ -52,7 +54,9 @@ export function renderPageFirstLevelDifficulty(difficulty: string, formattedTime
   `
     app.innerHTML = appHtml
 
-    const reStartGame2 = document.querySelector('#restart-button2') as HTMLInputElement
+    const reStartGame2 = document.querySelector(
+        '#restart-button2',
+    ) as HTMLInputElement
 
     reStartGame2.addEventListener('click', () => {
         reStartGameButton2()
@@ -62,7 +66,6 @@ export function renderPageFirstLevelDifficulty(difficulty: string, formattedTime
         console.log(`Игра перезапущена`)
         renderSelectionLevelGame()
     }
-
 
     const cardElements = document.querySelectorAll('.card')
 
@@ -163,10 +166,12 @@ function getNumCards(difficulty: string) {
             return 6
     }
 }
-let currentCard: Element |any = null
-let previousCard: Element |any = null
-// let isFlippingCards: boolean = false
 
+interface CardElement extends HTMLElement {
+    isMatched: boolean
+}
+let currentCard: CardElement | null = null
+let previousCard: CardElement | null = null
 
 function flipCard(
     event: Event,
@@ -178,7 +183,7 @@ function flipCard(
     //     return
     // }
 
-    const card = event.currentTarget as HTMLInputElement
+    const card = event.currentTarget as CardElement
 
     if (card.classList.contains('flipped')) {
         return
@@ -190,24 +195,27 @@ function flipCard(
         previousCard = card
         card.classList.toggle('flipped')
         // isFlippingCards = true
-        const currentCardFront =
-            currentCard.querySelector('.card__front img').src
-        const previousCardFront =
-            previousCard.querySelector('.card__front img').src
+        const currentCardFront = currentCard
+            .querySelector('.card__front img')
+            ?.getAttribute('src')
+        const previousCardFront = previousCard
+            .querySelector('.card__front img')
+            ?.getAttribute('src')
         if (currentCardFront === previousCardFront) {
             currentCard.isMatched = true
             previousCard.isMatched = true
 
             const allCards = document.querySelectorAll('.card')
-            const allMatched = Array.prototype.slice.call(allCards).every((card) => card.isMatched)
+            const allMatched = Array.prototype.slice
+                .call(allCards)
+                .every((card) => card.isMatched)
             if (allMatched) {
-
                 let formattedTime =
                     document.querySelector('.timer__value')?.textContent
                 clearInterval(timerInterval)
-                if(formattedTime){
+                if (formattedTime) {
                     showModal(formattedTime, true)
-               }
+                }
                 // renderWinPage(formattedTime, true)
             }
 
@@ -219,9 +227,9 @@ function flipCard(
             let formattedTime =
                 document.querySelector('.timer__value')?.textContent
             clearInterval(timerInterval)
-            if(formattedTime){
+            if (formattedTime) {
                 showModal(formattedTime, false)
-           }
+            }
             // renderWinPage(formattedTime, false)
             setTimeout(() => {
                 // clearInterval(timerInterval)
@@ -236,16 +244,20 @@ function flipCard(
 }
 
 function showModal(formattedTime: string, gameResult: boolean) {
-    const modal = document.getElementById('myModal2')  as HTMLElement
+    const modal = document.getElementById('myModal2') as HTMLElement
     modal.style.display = 'block'
 
-    const modalTimeElement = modal.querySelector('.window__fin_time') as HTMLElement
+    const modalTimeElement = modal.querySelector(
+        '.window__fin_time',
+    ) as HTMLElement
     modalTimeElement.textContent = formattedTime
 
-    const modalTextElement = modal.querySelector('.window__fin_text') as HTMLElement
+    const modalTextElement = modal.querySelector(
+        '.window__fin_text',
+    ) as HTMLElement
     modalTextElement.textContent = gameResult ? 'Вы выиграли!' : 'Вы проиграли!'
 
-    const modalElement = document.getElementById('myModal3')  as HTMLElement
+    const modalElement = document.getElementById('myModal3') as HTMLElement
     modalElement.classList.toggle('window__fin_imgwin', gameResult)
     modalElement.classList.toggle('window__fin_imgconq', !gameResult)
 }
