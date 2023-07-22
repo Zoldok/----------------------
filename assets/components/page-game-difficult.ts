@@ -115,11 +115,17 @@ export function renderPageFirstLevelDifficulty(
         renderPageFirstLevelDifficulty(difficulty, formattedTime)
     })
 
-    function renderCards(difficulty: string, cards: Array<string>) {
+    interface Card {
+        name: string;
+        front: string;
+        back: string;
+      }
+
+    function renderCards(difficulty: string, cards: Card[]) {
         const numCards = getNumCards(difficulty) * 2
         const selectedCards = cards.slice(0, Math.floor(numCards / 2))
         const duplicatedCards = [...selectedCards, ...selectedCards]
-        const shuffledCards = shuffle(duplicatedCards)
+        const shuffledCards: Card[] = shuffle(duplicatedCards)
         let cardsHtml = ''
         for (let i = 0; i < shuffledCards.length; i++) {
             const card = shuffledCards[i]
@@ -140,7 +146,7 @@ export function renderPageFirstLevelDifficulty(
     }
 }
 
-function shuffle(array: Array<any>) {
+function shuffle<T>(array: Array<T>): Array<T>{
     let currentIndex = array.length,
         randomIndex
     while (currentIndex !== 0) {
