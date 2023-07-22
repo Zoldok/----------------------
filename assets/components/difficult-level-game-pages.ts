@@ -63,7 +63,7 @@ export function renderSelectionLevelGame() {
         startGame(gameData.difficulty)
     })
 
-    function startGame(difficulty: any) {
+    function startGame(difficulty: string) {
         console.log(`Запуск игры с уровнем сложности "${difficulty}"`)
         renderPageFirstLevelDifficulty(difficulty, formattedTime)
     }
