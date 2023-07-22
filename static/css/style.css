@@ -41,6 +41,18 @@ body {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
 .window__fin_game {
   height: 100vh;
   display: flex;
@@ -123,6 +135,24 @@ body {
   flex-direction: column;
   align-items: center;
 }
+.content__game_display {
+  display: flex;
+  justify-content: center;
+}
+.content__game_game {
+  display: flex;
+  justify-content: space-between;
+}
+.content__game_head {
+  display: flex;
+  justify-content: space-between;
+}
+.content__game_header {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 1024px;
+}
 .content__game_h1 {
   text-align: center;
   color: #004980;
@@ -136,9 +166,9 @@ body {
   width: 98px;
   height: 98px;
   box-sizing: border-box;
-  border: 1px solid #fff;
+  border: 1px solid #ffffff;
   border-radius: 12px;
-  background-color: #fff;
+  background-color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -165,6 +195,7 @@ body {
   display: flex;
   flex-direction: row;
   margin-top: 48px;
+  display: flex;
   gap: 26px;
 }
 
@@ -189,44 +220,6 @@ body {
 }
 .button__again {
   margin-top: 40px;
-}
-
-.contentGame {
-  display: flex;
-  justify-content: space-between;
-}
-
-.button__level {
-  margin-top: 68px;
-  width: 246px;
-  height: 50px;
-  border-radius: 12px;
-  background-color: #7ac100;
-  border: 0;
-}
-.button__level_text {
-  font-family: MyFont, sans-serif;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 32px;
-  color: #fff;
-}
-
-.button__level2 {
-  margin-top: 52px;
-  margin-right: 23px;
-  width: 246px;
-  height: 50px;
-  border-radius: 12px;
-  background-color: #7ac100;
-  border: 0;
-}
-.button__level2_text {
-  font-family: MyFont, sans-serif;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 32px;
-  color: #fff;
 }
 
 .cards {

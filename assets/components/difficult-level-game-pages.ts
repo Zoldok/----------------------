@@ -1,5 +1,5 @@
 import { renderPageFirstLevelDifficulty } from './page-game-difficult'
-
+import { formattedTime } from './page-game-difficult'
 export function renderSelectionLevelGame() {
     const app = document.querySelector('#app') as HTMLInputElement
     const appHtml = `
@@ -65,6 +65,6 @@ export function renderSelectionLevelGame() {
 
     function startGame(difficulty: any) {
         console.log(`Запуск игры с уровнем сложности "${difficulty}"`)
-        renderPageFirstLevelDifficulty(difficulty)
+        renderPageFirstLevelDifficulty(difficulty, formattedTime)
     }
 }
