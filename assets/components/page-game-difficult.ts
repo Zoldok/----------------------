@@ -205,7 +205,9 @@ function flipCard(
                 let formattedTime =
                     document.querySelector('.timer__value')?.textContent
                 clearInterval(timerInterval)
-                showModal(formattedTime, true)
+                if(formattedTime){
+                    showModal(formattedTime, true)
+               }
                 // renderWinPage(formattedTime, true)
             }
 
@@ -217,7 +219,9 @@ function flipCard(
             let formattedTime =
                 document.querySelector('.timer__value')?.textContent
             clearInterval(timerInterval)
-            showModal(formattedTime, false)
+            if(formattedTime){
+                showModal(formattedTime, false)
+           }
             // renderWinPage(formattedTime, false)
             setTimeout(() => {
                 // clearInterval(timerInterval)
@@ -231,7 +235,7 @@ function flipCard(
     }
 }
 
-function showModal(formattedTime: string | any, gameResult: boolean) {
+function showModal(formattedTime: string, gameResult: boolean) {
     const modal = document.getElementById('myModal2')  as HTMLElement
     modal.style.display = 'block'
 
