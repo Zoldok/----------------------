@@ -24,24 +24,7 @@ body {
   font-display: swap;
   src: url("../font/stratosskyengweb-regular.woff2") format("woff");
 }
-.timer {
-  color: #fff;
-  font-family: StratosSkyeng, sans-serif;
-  font-size: 64px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 72px;
-  margin-top: 41px;
-  margin-left: 22px;
-}
-
-.fin__page {
-  background: url(../img/3.jpg) no-repeat center;
-  background-blend-mode: multiply;
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal {
+.window__fin {
   display: none;
   position: fixed;
   z-index: 1;
@@ -52,7 +35,6 @@ body {
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
 }
-
 .window__fin_game {
   height: 100vh;
   display: flex;
@@ -134,6 +116,16 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.content__game_timer {
+  color: #fff;
+  font-family: StratosSkyeng, sans-serif;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 72px;
+  margin-top: 41px;
+  margin-left: 22px;
 }
 .content__game_display {
   display: flex;
@@ -238,27 +230,21 @@ body {
   perspective: 1000px;
   cursor: pointer;
 }
-
-.card__front,
-.card__back {
+.card__front, .card__back {
   position: absolute;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
 }
-
 .card__front {
   transform: rotateY(180deg);
 }
-
 .card__back {
   transform: rotateY(0deg);
 }
-
 .card.flipped .card__front {
   transform: rotateY(0deg);
 }
-
 .card.flipped .card__back {
   transform: rotateY(-180deg);
 }/*# sourceMappingURL=style.css.map */
