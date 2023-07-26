@@ -7,7 +7,7 @@ export function renderPageFirstLevelDifficulty(
     difficulty: string,
     formattedTime: string,
 ) {
-    const shuffledCards = shuffle([...cards, ...cards]) 
+    const shuffledCards = shuffle([...cards, ...cards])
     const app = document.querySelector('#app') as HTMLInputElement
     const appHtml = `
     <div class="content__game_display">
@@ -70,7 +70,7 @@ export function renderPageFirstLevelDifficulty(
 
     cardElements.forEach((card) => {
         card.addEventListener('click', (event) =>
-            flipCard(event, timerInterval, formattedTime),
+            flipCard(event, timerInterval),
         )
     })
 
@@ -80,7 +80,7 @@ export function renderPageFirstLevelDifficulty(
         card.classList.add('flipped')
     })
 
-    let memoryTimeoutId = setTimeout(() => {
+    const memoryTimeoutId = setTimeout(() => {
         cardElements.forEach((card) => {
             card.classList.remove('flipped')
         })
@@ -115,10 +115,10 @@ export function renderPageFirstLevelDifficulty(
     })
 
     interface Card {
-        name: string;
-        front: string;
-        back: string;
-      }
+        name: string
+        front: string
+        back: string
+    }
 
     function renderCards(difficulty: string, cards: Card[]) {
         const numCards = getNumCards(difficulty) * 2
@@ -145,7 +145,7 @@ export function renderPageFirstLevelDifficulty(
     }
 }
 
-function shuffle<T>(array: Array<T>): Array<T>{
+function shuffle<T>(array: Array<T>): Array<T> {
     let currentIndex = array.length,
         randomIndex
     while (currentIndex !== 0) {
@@ -181,7 +181,7 @@ let previousCard: CardElement | null = null
 function flipCard(
     event: Event,
     timerInterval: ReturnType<typeof setTimeout>,
-    formattedTime: string,
+    // formattedTime: string,
 ) {
     const card = event.currentTarget as CardElement
 
@@ -210,7 +210,7 @@ function flipCard(
                 .call(allCards)
                 .every((card) => card.isMatched)
             if (allMatched) {
-                let formattedTime =
+                const formattedTime =
                     document.querySelector('.timer__value')?.textContent
                 clearInterval(timerInterval)
                 if (formattedTime) {
@@ -221,7 +221,7 @@ function flipCard(
             currentCard = null
             previousCard = null
         } else {
-            let formattedTime =
+            const formattedTime =
                 document.querySelector('.timer__value')?.textContent
             clearInterval(timerInterval)
             if (formattedTime) {

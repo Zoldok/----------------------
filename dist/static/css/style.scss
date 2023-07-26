@@ -6,58 +6,29 @@
 }
 
 body {
-    font-family: StratosSkyeng;
+    font-family: StratosSkyeng, sans-serif;
     background-color: #004980;
 }
 
 @font-face {
-    font-family: "StratosSkyeng";
+    font-family: StratosSkyeng;
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url("../font/stratosskyengweb-regular.woff2") format("woff2");
+    src: url('../font/stratosskyengweb-regular.woff2') format('woff2');
 }
 
 @font-face {
-    font-family: "StratosSkyeng";
+    font-family: StratosSkyeng;
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url("../font/stratosskyengweb-regular.woff2") format("woff");
+    src: url('../font/stratosskyengweb-regular.woff2') format('woff');
 }
 
-// .timer {
-//     color: #fff;
-//     font-family: StratosSkyeng, sans-serif;
-//     font-size: 64px;
-//     font-style: normal;
-//     font-weight: 400;
-//     line-height: 72px;
-//     margin-top: 41px;
-//     margin-left: 22px;
-// }
-
-// .fin__page{
-//     background: url(../img/3.jpg) no-repeat center;
-//     background-blend-mode: multiply;
-//     background-color: rgba(0, 0, 0, 0.4);
-// }
-
-// .modal {
-//   display: none; 
-//   position: fixed;
-//   z-index: 1;
-//   left: 0;
-//   top: 0;
-//   width: 100%;
-//   height: 100%;
-//   overflow: auto;
-//   background-color: rgba(0, 0, 0, 0.4);
-// }
-
 .window {
-    &__fin{
-        display: none; 
+    &__fin {
+        display: none;
         position: fixed;
         z-index: 1;
         left: 0;
@@ -65,16 +36,16 @@ body {
         width: 100%;
         height: 100%;
         overflow: auto;
-        background-color: rgba(0, 0, 0, 0.4);
+        background-color: rgb(0 0 0 / 40%);
 
-        &_game{
+        &_game {
             height: 100vh;
             display: flex;
             justify-content: space-around;
             align-content: center;
             flex-wrap: wrap;
         }
-    
+
         &_game2 {
             width: 480px;
             height: 459px;
@@ -82,7 +53,6 @@ body {
             border-radius: 12px;
             display: flex;
             flex-direction: column;
-            flex-wrap: nowrap;
             align-items: center;
         }
 
@@ -90,19 +60,19 @@ body {
             margin-top: 26px;
             width: 96px;
             height: 96px;
-            flex-shrink: 0; 
-            background-image: url(../img/Image.png);
+            flex-shrink: 0;
+            background-image: url('../img/Image.png');
         }
 
         &_imgconq {
             margin-top: 32px;
             width: 96px;
             height: 96px;
-            flex-shrink: 0; 
-            background-image: url(../img/dead.png);
+            flex-shrink: 0;
+            background-image: url('../img/dead.png');
         }
 
-        &_tex{
+        &_tex {
             display: flex;
             flex-direction: column;
             align-content: flex-start;
@@ -115,14 +85,14 @@ body {
             font-size: 40px;
             font-style: normal;
             font-weight: 400;
-            line-height: 48px; 
+            line-height: 48px;
             color: #004980;
         }
 
         &_text2 {
             margin-top: 28px;
             color: #000;
-            font-family: StratosSkyeng, sans-serif;;
+            font-family: StratosSkyeng, sans-serif;
             font-size: 24px;
             font-style: normal;
             font-weight: 400;
@@ -132,7 +102,7 @@ body {
         &_time {
             margin-top: 10px;
             color: #000;
-            font-family: StratosSkyeng, sans-serif;;
+            font-family: StratosSkyeng, sans-serif;
             font-size: 64px;
             font-style: normal;
             font-weight: 400;
@@ -140,7 +110,6 @@ body {
         }
     }
 }
-
 
 .content {
     height: 100vh;
@@ -179,7 +148,7 @@ body {
             display: flex;
             justify-content: space-between;
         }
-        
+
         &_head {
             display: flex;
             justify-content: space-between;
@@ -206,9 +175,9 @@ body {
             width: 98px;
             height: 98px;
             box-sizing: border-box;
-            border: 1px solid #ffffff;
+            border: 1px solid #fff;
             border-radius: 12px;
-            background-color: #ffffff;
+            background-color: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -239,7 +208,6 @@ body {
             display: flex;
             flex-direction: row;
             margin-top: 48px;
-            display: flex;
             gap: 26px;
         }
     }
@@ -251,22 +219,22 @@ body {
     border-radius: 12px;
     background-color: #7ac100;
     border: 0;
-    font-family: StratosSkyeng;
+    font-family: StratosSkyeng, sans-serif;
     font-weight: 400;
     font-size: 24px;
     line-height: 32px;
-    color: #ffffff;
+    color: #fff;
 
-    &__start{
+    &__start {
         margin-top: 66px;
     }
 
-    &__restart{
+    &__restart {
         margin-top: 52px;
         margin-right: 23px;
     }
 
-    &__again{
+    &__again {
         margin-top: 40px;
     }
 }
@@ -277,6 +245,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
 }
+
 .card {
     width: 96px;
     height: 135px;
@@ -288,27 +257,29 @@ body {
 
     &__front,
     &__back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-   }
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+    }
 
-   &__front {
-       transform: rotateY(180deg);
-   }
+    &__front {
+        transform: rotateY(180deg);
+    }
 
-   &__back {
-       transform: rotateY(0deg);
-   }
+    &__back {
+        transform: rotateY(0deg);
+    }
 
-   &.flipped {
-       & .card__front {
-           transform: rotateY(0deg);
-       }
-       
-       & .card__back {
-           transform: rotateY(-180deg);
-       }
-   }
+    &.flipped {
+        & .card {
+            &__front {
+                transform: rotateY(0deg);
+            }
+
+            &__back {
+                transform: rotateY(-180deg);
+            }
+        }
+    }
 }
