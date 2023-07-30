@@ -6,42 +6,25 @@
 }
 
 body {
-  font-family: StratosSkyeng;
+  font-family: StratosSkyeng, sans-serif;
   background-color: #004980;
 }
 
 @font-face {
-  font-family: "StratosSkyeng";
+  font-family: StratosSkyeng;
   font-style: normal;
   font-weight: 400;
   font-display: swap;
   src: url("../font/stratosskyengweb-regular.woff2") format("woff2");
 }
 @font-face {
-  font-family: "StratosSkyeng";
+  font-family: StratosSkyeng;
   font-style: normal;
   font-weight: 400;
   font-display: swap;
   src: url("../font/stratosskyengweb-regular.woff2") format("woff");
 }
-.timer {
-  color: #fff;
-  font-family: StratosSkyeng, sans-serif;
-  font-size: 64px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 72px;
-  margin-top: 41px;
-  margin-left: 22px;
-}
-
-.fin__page {
-  background: url(../img/3.jpg) no-repeat center;
-  background-blend-mode: multiply;
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal {
+.window__fin {
   display: none;
   position: fixed;
   z-index: 1;
@@ -52,7 +35,6 @@ body {
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
 }
-
 .window__fin_game {
   height: 100vh;
   display: flex;
@@ -67,7 +49,6 @@ body {
   border-radius: 12px;
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
   align-items: center;
 }
 .window__fin_imgwin {
@@ -75,14 +56,14 @@ body {
   width: 96px;
   height: 96px;
   flex-shrink: 0;
-  background-image: url(../img/Image.png);
+  background-image: url("../img/Image.png");
 }
 .window__fin_imgconq {
   margin-top: 32px;
   width: 96px;
   height: 96px;
   flex-shrink: 0;
-  background-image: url(../img/dead.png);
+  background-image: url("../img/dead.png");
 }
 .window__fin_tex {
   display: flex;
@@ -135,6 +116,16 @@ body {
   flex-direction: column;
   align-items: center;
 }
+.content__game_timer {
+  color: #fff;
+  font-family: StratosSkyeng, sans-serif;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 72px;
+  margin-top: 41px;
+  margin-left: 22px;
+}
 .content__game_display {
   display: flex;
   justify-content: center;
@@ -166,9 +157,9 @@ body {
   width: 98px;
   height: 98px;
   box-sizing: border-box;
-  border: 1px solid #ffffff;
+  border: 1px solid #fff;
   border-radius: 12px;
-  background-color: #ffffff;
+  background-color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -195,7 +186,6 @@ body {
   display: flex;
   flex-direction: row;
   margin-top: 48px;
-  display: flex;
   gap: 26px;
 }
 
@@ -205,11 +195,11 @@ body {
   border-radius: 12px;
   background-color: #7ac100;
   border: 0;
-  font-family: StratosSkyeng;
+  font-family: StratosSkyeng, sans-serif;
   font-weight: 400;
   font-size: 24px;
   line-height: 32px;
-  color: #ffffff;
+  color: #fff;
 }
 .button__start {
   margin-top: 66px;
@@ -238,27 +228,21 @@ body {
   perspective: 1000px;
   cursor: pointer;
 }
-
-.card__front,
-.card__back {
+.card__front, .card__back {
   position: absolute;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
 }
-
 .card__front {
   transform: rotateY(180deg);
 }
-
 .card__back {
   transform: rotateY(0deg);
 }
-
 .card.flipped .card__front {
   transform: rotateY(0deg);
 }
-
 .card.flipped .card__back {
   transform: rotateY(-180deg);
 }/*# sourceMappingURL=style.css.map */

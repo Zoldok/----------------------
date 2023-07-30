@@ -7,14 +7,13 @@ export function renderPageFirstLevelDifficulty(
     difficulty: string,
     formattedTime: string,
 ) {
-    // let memoryTimeoutId: ReturnType<typeof setTimeout> // добавляем переменную для идентификатора таймера
-    const shuffledCards = shuffle([...cards, ...cards]) // удваиваем массив, чтобы получить пары карточек
+    const shuffledCards = shuffle([...cards, ...cards])
     const app = document.querySelector('#app') as HTMLInputElement
     const appHtml = `
     <div class="content__game_display">
         <div class="content__game_header center">
         <div class="content__game_head">
-            <div class="timer">
+            <div class="content__game_timer">
                 <span class="timer__label"></span>
                 <span class="timer__value">00:00</span>
             </div>
@@ -71,7 +70,7 @@ export function renderPageFirstLevelDifficulty(
 
     cardElements.forEach((card) => {
         card.addEventListener('click', (event) =>
-            flipCard(event, timerInterval, formattedTime),
+            flipCard(event, timerInterval),
         )
     })
 
@@ -81,7 +80,7 @@ export function renderPageFirstLevelDifficulty(
         card.classList.add('flipped')
     })
 
-    let memoryTimeoutId = setTimeout(() => {
+    const memoryTimeoutId = setTimeout(() => {
         cardElements.forEach((card) => {
             card.classList.remove('flipped')
         })
@@ -116,10 +115,10 @@ export function renderPageFirstLevelDifficulty(
     })
 
     interface Card {
-        name: string;
-        front: string;
-        back: string;
-      }
+        name: string
+        front: string
+        back: string
+    }
 
     function renderCards(difficulty: string, cards: Card[]) {
         const numCards = getNumCards(difficulty) * 2
@@ -139,14 +138,14 @@ export function renderPageFirstLevelDifficulty(
                     </div>
                 </div>
             `
-            console.log(`Rendered card ${i}: ${card.front}`)
+            // console.log(`Rendered card ${i}: ${card.front}`)
             cardsHtml += cardHtml
         }
         return cardsHtml
     }
 }
 
-function shuffle<T>(array: Array<T>): Array<T>{
+function shuffle<T>(array: Array<T>): Array<T> {
     let currentIndex = array.length,
         randomIndex
     while (currentIndex !== 0) {
@@ -182,13 +181,8 @@ let previousCard: CardElement | null = null
 function flipCard(
     event: Event,
     timerInterval: ReturnType<typeof setTimeout>,
-    formattedTime: string,
+    // formattedTime: string,
 ) {
-    // if (isFlippingCards) {
-    //     // Игнорируем клики, если уже переворачиваем карты
-    //     return
-    // }
-
     const card = event.currentTarget as CardElement
 
     if (card.classList.contains('flipped')) {
@@ -216,34 +210,28 @@ function flipCard(
                 .call(allCards)
                 .every((card) => card.isMatched)
             if (allMatched) {
-                let formattedTime =
+                const formattedTime =
                     document.querySelector('.timer__value')?.textContent
                 clearInterval(timerInterval)
                 if (formattedTime) {
                     showModal(formattedTime, true)
                 }
-                // renderWinPage(formattedTime, true)
             }
 
             currentCard = null
             previousCard = null
-            // isFlippingCards = false
         } else {
-            // gameResult = false
-            let formattedTime =
+            // currentCard.classList.remove('flipped')
+            // previousCard.classList.remove('flipped')
+            const formattedTime =
                 document.querySelector('.timer__value')?.textContent
             clearInterval(timerInterval)
             if (formattedTime) {
                 showModal(formattedTime, false)
             }
-            // renderWinPage(formattedTime, false)
             setTimeout(() => {
-                // clearInterval(timerInterval)
-                // currentCard.classList.remove('flipped')
-                // previousCard.classList.remove('flipped')
                 currentCard = null
                 previousCard = null
-                // isFlippingCards = false
             }, 1000)
         }
     }
