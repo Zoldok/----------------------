@@ -138,7 +138,7 @@ export function renderPageFirstLevelDifficulty(
                     </div>
                 </div>
             `
-            console.log(`Rendered card ${i}: ${card.front}`)
+            // console.log(`Rendered card ${i}: ${card.front}`)
             cardsHtml += cardHtml
         }
         return cardsHtml
@@ -221,6 +221,8 @@ function flipCard(
             currentCard = null
             previousCard = null
         } else {
+            // currentCard.classList.remove('flipped')
+            // previousCard.classList.remove('flipped')
             const formattedTime =
                 document.querySelector('.timer__value')?.textContent
             clearInterval(timerInterval)
